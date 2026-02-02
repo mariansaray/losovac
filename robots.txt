@@ -1,0 +1,12 @@
+# robots.txt for www.losovanie.sk
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /*.json$
+
+# Sitemap
+Sitemap: https://www.losovanie.sk/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1

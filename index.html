@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Online losovanie zadarmo | Losovanie.sk - Moderný losovač</title>
+    <meta name="description" content="Bezplatný online losovač pre spravodlivé a transparentné losovanie. Ideálny nástroj pre súťaže, žrebovania a vylosovanie víťazov. Jednoduché, rýchle a zadarmo!">
+    <meta name="keywords" content="online losovanie, losovanie zadarmo, losovač, losovanie online, náhodný výber, žrebovanie, súťaž, výhra, losovanie víťazov, generator náhodných čísel">
+    <meta name="author" content="Marián Šaray">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.losovanie.sk">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.losovanie.sk">
+    <meta property="og:title" content="Online losovanie zadarmo | Losovanie.sk">
+    <meta property="og:description" content="Bezplatný online losovač pre spravodlivé a transparentné losovanie. Ideálny pre súťaže a žrebovania.">
+    <meta property="og:site_name" content="Losovanie.sk">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.losovanie.sk">
+    <meta property="twitter:title" content="Online losovanie zadarmo | Losovanie.sk">
+    <meta property="twitter:description" content="Bezplatný online losovač pre spravodlivé a transparentné losovanie.">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎲</text></svg>">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Online losovanie zadarmo",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "description": "Bezplatný online losovač pre spravodlivé a transparentné losovanie. Ideálny nástroj pre súťaže, žrebovania a vylosovanie víťazov.",
+      "url": "https://www.losovanie.sk",
+      "author": {
+        "@type": "Person",
+        "name": "Marián Šaray"
+      }
+    }
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --secondary: #ec4899;
+            --accent: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --glow-primary: rgba(99, 102, 241, 0.5);
+            --glow-secondary: rgba(236, 72, 153, 0.5);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0f;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated gradient background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            animation: gradientShift 15s ease infinite;
+            z-index: 0;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(5%, -5%) rotate(120deg); }
+            66% { transform: translate(-5%, 5%) rotate(240deg); }
+        }
+
+        .container {
+            max-width: 950px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card {
+            background: rgba(15, 15, 25, 0.7);
+            border-radius: 32px;
+            padding: 50px;
+            box-shadow: 
+                0 0 60px rgba(99, 102, 241, 0.1),
+                0 30px 90px rgba(0, 0, 0, 0.5),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(99, 102, 241, 0.5), 
+                rgba(236, 72, 153, 0.5), 
+                transparent
+            );
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 3.5em;
+            font-weight: 900;
+            letter-spacing: -2px;
+            position: relative;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        h1 .emoji {
+            display: inline-block;
+            font-style: normal;
+        }
+
+        h1 .text {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.3)); }
+            50% { filter: drop-shadow(0 0 30px rgba(236, 72, 153, 0.5)); }
+        }
+
+        .input-section {
+            margin-bottom: 35px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 12px;
+            color: #e0e0ff;
+            font-weight: 600;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 160px;
+            padding: 20px;
+            background: rgba(20, 20, 35, 0.6);
+            border: 2px solid rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            color: #fff;
+            resize: vertical;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                inset 0 2px 10px rgba(0, 0, 0, 0.3),
+                0 0 0 0 var(--glow-primary);
+        }
+
+        textarea::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: rgba(99, 102, 241, 0.6);
+            background: rgba(20, 20, 35, 0.8);
+            box-shadow: 
+                inset 0 2px 10px rgba(0, 0, 0, 0.3),
+                0 0 0 4px rgba(99, 102, 241, 0.1),
+                0 0 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .settings {
+            margin-bottom: 25px;
+        }
+
+        .setting-group {
+            width: 100%;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(20, 20, 35, 0.6);
+            border: 2px solid rgba(99, 102, 241, 0.2);
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Inter', sans-serif;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: rgba(99, 102, 241, 0.6);
+            background: rgba(20, 20, 35, 0.8);
+            box-shadow: 
+                0 0 0 4px rgba(99, 102, 241, 0.1),
+                0 0 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 20px;
+            background: rgba(20, 20, 35, 0.4);
+            border-radius: 16px;
+            border: 2px solid rgba(99, 102, 241, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .checkbox-group:hover {
+            background: rgba(20, 20, 35, 0.6);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            accent-color: #6366f1;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .prizes-section {
+            margin-bottom: 35px;
+            padding: 25px;
+            background: rgba(20, 20, 35, 0.4);
+            border-radius: 20px;
+            border: 2px solid rgba(99, 102, 241, 0.2);
+            display: none;
+        }
+
+        .prizes-section.active {
+            display: block;
+            animation: slideDown 0.4s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .prize-input-group {
+            margin-bottom: 15px;
+        }
+
+        .prize-input-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .prize-input {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(20, 20, 35, 0.6);
+            border: 2px solid rgba(139, 92, 246, 0.2);
+            border-radius: 14px;
+            font-size: 15px;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .prize-input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .prize-input:focus {
+            outline: none;
+            border-color: rgba(139, 92, 246, 0.6);
+            background: rgba(20, 20, 35, 0.8);
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 22px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+            background-size: 200% 200%;
+            color: white;
+            border: none;
+            border-radius: 18px;
+            font-size: 1.4em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 10px 40px rgba(99, 102, 241, 0.3),
+                0 0 0 0 rgba(99, 102, 241, 0.4),
+                inset 0 1px 1px rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 
+                0 15px 50px rgba(99, 102, 241, 0.4),
+                0 0 60px rgba(236, 72, 153, 0.3),
+                inset 0 1px 1px rgba(255, 255, 255, 0.2);
+            background-position: 100% 0;
+        }
+
+        .btn:active {
+            transform: translateY(-1px) scale(0.99);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Losovacia obrazovka */
+        .lottery-bowl {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lottery-bowl.active {
+            display: flex;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .bowl-container {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            perspective: 1500px;
+        }
+
+        /* Slot machine style */
+        .slot-machine {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .slot-column {
+            width: 140px;
+            height: 350px;
+            background: rgba(15, 15, 25, 0.8);
+            border-radius: 20px;
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            overflow: hidden;
+            position: relative;
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.5),
+                inset 0 2px 10px rgba(0, 0, 0, 0.3),
+                0 0 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .slot-items {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .slot-items.spinning {
+            animation: slotSpin 0.1s linear infinite;
+        }
+
+        @keyframes slotSpin {
+            from { transform: translateY(0); }
+            to { transform: translateY(-100px); }
+        }
+
+        .slot-item {
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            color: white;
+            font-weight: 700;
+            font-size: 0.9em;
+            text-align: center;
+            background: linear-gradient(180deg, 
+                rgba(99, 102, 241, 0.1) 0%,
+                rgba(139, 92, 246, 0.1) 100%
+            );
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+            word-wrap: break-word;
+        }
+
+        .slot-highlight {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 100px;
+            transform: translateY(-50%);
+            border: 3px solid rgba(236, 72, 153, 0.6);
+            border-radius: 15px;
+            pointer-events: none;
+            box-shadow: 
+                0 0 30px rgba(236, 72, 153, 0.5),
+                inset 0 0 20px rgba(236, 72, 153, 0.2);
+            animation: highlightPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes highlightPulse {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 30px rgba(236, 72, 153, 0.5),
+                    inset 0 0 20px rgba(236, 72, 153, 0.2);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 50px rgba(236, 72, 153, 0.8),
+                    inset 0 0 30px rgba(236, 72, 153, 0.4);
+            }
+        }
+
+        .winner-card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: linear-gradient(135deg, 
+                rgba(99, 102, 241, 0.95) 0%,
+                rgba(139, 92, 246, 0.95) 50%,
+                rgba(236, 72, 153, 0.95) 100%
+            );
+            padding: 50px 60px;
+            border-radius: 30px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.6),
+                0 0 100px rgba(99, 102, 241, 0.5),
+                inset 0 2px 2px rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            z-index: 10;
+        }
+
+        .winner-card.show {
+            animation: cardReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes cardReveal {
+            0% {
+                transform: translate(-50%, -50%) scale(0) rotateZ(-180deg);
+                opacity: 0;
+            }
+            70% {
+                transform: translate(-50%, -50%) scale(1.1) rotateZ(10deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1) rotateZ(0deg);
+                opacity: 1;
+            }
+        }
+
+        .winner-card-content {
+            text-align: center;
+            color: white;
+        }
+
+        .winner-card-label {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .winner-card-name {
+            font-size: 3em;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .winner-card-prize {
+            font-size: 1.5em;
+            font-weight: 600;
+            opacity: 0.95;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        /* Výsledky */
+        .results {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .results.active {
+            display: flex;
+        }
+
+        .results-content {
+            background: rgba(15, 15, 25, 0.9);
+            border-radius: 32px;
+            padding: 60px;
+            max-width: 700px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 
+                0 0 80px rgba(99, 102, 241, 0.2),
+                0 30px 90px rgba(0, 0, 0, 0.6),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .results-content h2 {
+            font-size: 2.5em;
+            font-weight: 900;
+            margin-bottom: 40px;
+            letter-spacing: -1px;
+        }
+
+        .results-content h2 .emoji {
+            display: inline-block;
+            font-style: normal;
+        }
+
+        .results-content h2 .text {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .close-x {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            opacity: 0.4;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .close-x:hover {
+            opacity: 1;
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .close-x::before,
+        .close-x::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 24px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 2px;
+        }
+
+        .close-x::before {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .close-x::after {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        .result-item {
+            margin: 24px 0;
+            padding: 28px 35px;
+            background: linear-gradient(135deg, 
+                rgba(99, 102, 241, 0.2) 0%, 
+                rgba(139, 92, 246, 0.2) 50%,
+                rgba(236, 72, 153, 0.2) 100%
+            );
+            border: 2px solid rgba(99, 102, 241, 0.4);
+            color: white;
+            border-radius: 20px;
+            font-size: 1.8em;
+            font-weight: 800;
+            opacity: 0;
+            transform: scale(0);
+            animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            box-shadow: 
+                0 10px 40px rgba(99, 102, 241, 0.3),
+                0 0 0 1px rgba(236, 72, 153, 0.3),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+
+        .result-item::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, 
+                rgba(99, 102, 241, 0.5), 
+                rgba(236, 72, 153, 0.5)
+            );
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotateZ(-180deg) translateY(100px);
+            }
+            70% {
+                transform: scale(1.15) rotateZ(10deg) translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotateZ(0deg) translateY(0);
+            }
+        }
+
+        /* Konfety */
+        .confetti {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            top: -10px;
+            z-index: 3000;
+            pointer-events: none;
+            border-radius: 2px;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(0) rotateZ(0deg) rotateX(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotateZ(720deg) rotateX(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Loading text */
+        .loading-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2.5em;
+            font-weight: 900;
+            background: linear-gradient(135deg, #6366f1, #ec4899, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            pointer-events: none;
+            animation: pulse 1.5s ease-in-out infinite;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(1);
+                filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.5));
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.05);
+                filter: drop-shadow(0 0 40px rgba(236, 72, 153, 0.8));
+            }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer a {
+            color: rgba(99, 102, 241, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: rgba(99, 102, 241, 1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .card {
+                padding: 30px 20px;
+                border-radius: 24px;
+            }
+            
+            h1 {
+                font-size: 2em;
+                margin-bottom: 30px;
+            }
+
+            label {
+                font-size: 0.85em;
+            }
+
+            textarea {
+                min-height: 120px;
+                padding: 15px;
+                font-size: 15px;
+            }
+
+            input[type="number"] {
+                padding: 14px 16px;
+                font-size: 16px;
+            }
+
+            .checkbox-group {
+                padding: 14px 16px;
+            }
+
+            .checkbox-group label {
+                font-size: 0.85em;
+            }
+
+            .prize-input {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .btn {
+                padding: 18px;
+                font-size: 1.2em;
+            }
+            
+            .bowl-container {
+                width: 95%;
+                max-width: 380px;
+                height: 280px;
+            }
+
+            .slot-machine {
+                gap: 6px;
+            }
+
+            .slot-column {
+                width: 90px;
+                height: 260px;
+            }
+
+            .slot-item {
+                height: 70px;
+                font-size: 0.7em;
+                padding: 8px;
+            }
+
+            .slot-highlight {
+                height: 70px;
+            }
+
+            .winner-card {
+                padding: 30px 25px;
+                border-radius: 24px;
+            }
+
+            .winner-card-label {
+                font-size: 1em;
+            }
+
+            .winner-card-name {
+                font-size: 1.8em;
+                margin-bottom: 10px;
+            }
+
+            .winner-card-prize {
+                font-size: 1.1em;
+                padding: 12px 20px;
+            }
+
+            .loading-text {
+                font-size: 1.8em;
+            }
+            
+            .results-content {
+                padding: 35px 20px;
+                border-radius: 24px;
+            }
+
+            .results-content h2 {
+                font-size: 2em;
+                margin-bottom: 30px;
+            }
+
+            .result-item {
+                font-size: 1.2em;
+                padding: 18px 20px;
+                margin: 18px 0;
+            }
+
+            .close-x {
+                top: 20px;
+                right: 20px;
+                width: 35px;
+                height: 35px;
+            }
+
+            .footer {
+                font-size: 0.8em;
+                margin-top: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.7em;
+            }
+
+            .card {
+                padding: 25px 15px;
+            }
+
+            .slot-column {
+                width: 80px;
+            }
+
+            .slot-item {
+                font-size: 0.65em;
+            }
+
+            .winner-card-name {
+                font-size: 1.5em;
+            }
+
+            .result-item {
+                font-size: 1.1em;
+                padding: 16px 18px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            body::before {
+                display: none;
+            }
+
+            .btn, .footer {
+                display: none;
+            }
+
+            .card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+    <noscript>
+        <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.95); color: white; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; z-index: 9999;">
+            <div>
+                <h1 style="font-size: 2em; margin-bottom: 20px;">⚠️ JavaScript je vypnutý</h1>
+                <p style="font-size: 1.2em;">Táto aplikácia vyžaduje zapnutý JavaScript pre správne fungovanie.<br>Prosím, povoľte JavaScript vo vašom prehliadači.</p>
+            </div>
+        </div>
+    </noscript>
+    
+    <div class="container">
+        <div class="card">
+            <h1><span class="emoji">🎲</span> <span class="text">Losovač</span></h1>
+            
+            <div class="input-section">
+                <label for="items">Položky na losovanie (každý riadok = jedna položka):</label>
+                <textarea id="items" placeholder="Meno 1&#10;Meno 2&#10;Meno 3&#10;..." maxlength="10000" aria-label="Zadajte položky na losovanie"></textarea>
+            </div>
+
+            <div class="settings">
+                <div class="setting-group">
+                    <label for="count">Počet vylosovaných:</label>
+                    <input type="number" id="count" min="1" max="100" value="1" onchange="updatePrizeInputs()" aria-label="Počet vylosovaných">
+                </div>
+            </div>
+
+            <div class="setting-group" style="margin-bottom: 20px;">
+                <div class="checkbox-group" onclick="document.getElementById('withOrder').click()">
+                    <input type="checkbox" id="withOrder" onclick="event.stopPropagation()">
+                    <label for="withOrder">Losovať s poradím (1., 2., 3., ...)</label>
+                </div>
+            </div>
+
+            <div class="setting-group" style="margin-bottom: 30px;">
+                <div class="checkbox-group" onclick="document.getElementById('withPrizes').click()">
+                    <input type="checkbox" id="withPrizes" onclick="event.stopPropagation(); togglePrizeSection()">
+                    <label for="withPrizes">Pridať výhry</label>
+                </div>
+            </div>
+
+            <div class="prizes-section" id="prizesSection">
+                <label style="margin-bottom: 20px; display: block;">Výhry pre jednotlivé miesta:</label>
+                <div id="prizeInputs"></div>
+            </div>
+
+            <button class="btn" onclick="startLottery()">🎯 Spustiť losovanie</button>
+        </div>
+
+        <footer class="footer">
+            © 2026 <a href="https://www.losovanie.sk" target="_blank" rel="noopener">losovanie.sk</a> | Autor: Marián Šaray
+        </footer>
+    </div>
+
+    <!-- Losovacia obrazovka -->
+    <div class="lottery-bowl" id="lotteryBowl">
+        <div class="bowl-container">
+            <div class="slot-machine" id="slotMachine">
+                <div class="slot-column">
+                    <div class="slot-items" id="slotItems1"></div>
+                    <div class="slot-highlight"></div>
+                </div>
+                <div class="slot-column">
+                    <div class="slot-items" id="slotItems2"></div>
+                    <div class="slot-highlight"></div>
+                </div>
+                <div class="slot-column">
+                    <div class="slot-items" id="slotItems3"></div>
+                    <div class="slot-highlight"></div>
+                </div>
+            </div>
+            <div class="winner-card" id="winnerCard">
+                <div class="winner-card-content">
+                    <div class="winner-card-label" id="winnerLabel"></div>
+                    <div class="winner-card-name" id="winnerName"></div>
+                    <div class="winner-card-prize" id="winnerPrize"></div>
+                </div>
+            </div>
+            <div class="loading-text" id="loadingText">Losuje sa...</div>
+        </div>
+    </div>
+
+    <!-- Výsledky -->
+    <div class="results" id="results">
+        <div class="results-content">
+            <div class="close-x" onclick="closeResults()"></div>
+            <h2><span class="emoji">🎉</span> <span class="text">Výsledky losovania</span></h2>
+            <div id="resultsList"></div>
+        </div>
+    </div>
+
+    <script>
+        let allItems = [];
+        let availableItems = [];
+        let winners = [];
+        let winnerResults = [];
+        let prizes = {};
+        let withOrder = false;
+        let withPrizes = false;
+        let totalCount = 0;
+        let currentRound = 0;
+
+        function togglePrizeSection() {
+            const checkbox = document.getElementById('withPrizes');
+            const section = document.getElementById('prizesSection');
+            
+            if (checkbox.checked) {
+                section.classList.add('active');
+                updatePrizeInputs();
+            } else {
+                section.classList.remove('active');
+            }
+        }
+
+        function updatePrizeInputs() {
+            const count = parseInt(document.getElementById('count').value) || 1;
+            const container = document.getElementById('prizeInputs');
+            const checkbox = document.getElementById('withPrizes');
+            
+            if (!checkbox.checked) return;
+            
+            container.innerHTML = '';
+            
+            for (let i = 1; i <= count; i++) {
+                const group = document.createElement('div');
+                group.className = 'prize-input-group';
+                
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.className = 'prize-input';
+                input.id = `prize${i}`;
+                input.placeholder = `Výhra pre ${i}. miesto`;
+                input.value = prizes[i] || '';
+                input.onchange = () => { prizes[i] = input.value; };
+                
+                group.appendChild(input);
+                container.appendChild(group);
+            }
+        }
+
+        function startLottery() {
+            const textarea = document.getElementById('items');
+            const countInput = document.getElementById('count');
+            const orderCheckbox = document.getElementById('withOrder');
+            const prizesCheckbox = document.getElementById('withPrizes');
+
+            // Získať položky
+            allItems = textarea.value
+                .split('\n')
+                .map(item => item.trim())
+                .filter(item => item.length > 0);
+
+            if (allItems.length === 0) {
+                alert('⚠️ Prosím, zadajte aspoň jednu položku na losovanie!');
+                return;
+            }
+
+            if (allItems.length === 1 && totalCount > 1) {
+                alert('⚠️ Máte len jednu položku, nemôžete vylosovať viac víťazov!');
+                return;
+            }
+
+            totalCount = parseInt(countInput.value);
+            if (totalCount < 1) {
+                alert('⚠️ Počet vylosovaných musí byť aspoň 1!');
+                return;
+            }
+            
+            if (totalCount > allItems.length) {
+                alert('⚠️ Počet vylosovaných (' + totalCount + ') nemôže byť väčší ako počet položiek (' + allItems.length + ')!');
+                return;
+            }
+
+            if (totalCount > 100) {
+                alert('⚠️ Maximálny počet vylosovaných je 100!');
+                return;
+            }
+
+            withOrder = orderCheckbox.checked;
+            withPrizes = prizesCheckbox.checked;
+            winners = [];
+            winnerResults = [];
+            availableItems = [...allItems];
+            currentRound = 0;
+
+            // Spustiť prvé kolo losovania
+            startRound();
+        }
+
+        function startRound() {
+            setTimeout(() => {
+                showSlotMachine();
+            }, 300);
+        }
+
+        function showSlotMachine() {
+            const bowl = document.getElementById('lotteryBowl');
+            const loadingText = document.getElementById('loadingText');
+            const winnerCard = document.getElementById('winnerCard');
+            
+            bowl.classList.add('active');
+            loadingText.style.display = 'block';
+            winnerCard.classList.remove('show');
+            
+            // Vytvoriť slot items
+            createSlotItems();
+            
+            // Spustiť spinning
+            startSpinning();
+            
+            // Po 3 sekundách zastaviť a vylosovať
+            setTimeout(() => {
+                stopSpinningAndReveal();
+            }, 3000);
+        }
+
+        function createSlotItems() {
+            const columns = ['slotItems1', 'slotItems2', 'slotItems3'];
+            
+            columns.forEach(colId => {
+                const column = document.getElementById(colId);
+                column.innerHTML = '';
+                
+                // Vytvoriť viac položiek pre plynulý scroll
+                for (let repeat = 0; repeat < 10; repeat++) {
+                    availableItems.forEach(item => {
+                        const slotItem = document.createElement('div');
+                        slotItem.className = 'slot-item';
+                        slotItem.textContent = item;
+                        column.appendChild(slotItem);
+                    });
+                }
+            });
+        }
+
+        function startSpinning() {
+            const columns = ['slotItems1', 'slotItems2', 'slotItems3'];
+            columns.forEach(colId => {
+                document.getElementById(colId).classList.add('spinning');
+            });
+        }
+
+        function stopSpinningAndReveal() {
+            const columns = ['slotItems1', 'slotItems2', 'slotItems3'];
+            
+            // Vylosovať víťaza
+            const randomIndex = Math.floor(Math.random() * availableItems.length);
+            const winner = availableItems[randomIndex];
+            availableItems.splice(randomIndex, 1);
+            winners.push(winner);
+            currentRound++;
+            
+            // Zastaviť spinning s oneskorením pre každý stĺpec
+            columns.forEach((colId, index) => {
+                setTimeout(() => {
+                    const column = document.getElementById(colId);
+                    column.classList.remove('spinning');
+                    
+                    // Nastaviť pozíciu na víťaza
+                    const winnerIndex = Array.from(column.children).findIndex(
+                        item => item.textContent === winner
+                    );
+                    if (winnerIndex >= 0) {
+                        column.style.transform = `translateY(-${winnerIndex * 100 - 125}px)`;
+                        column.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                    }
+                }, index * 300);
+            });
+            
+            // Zobraziť winner card
+            setTimeout(() => {
+                showWinnerCard(winner);
+            }, 1500);
+        }
+
+        function showWinnerCard(winner) {
+            const loadingText = document.getElementById('loadingText');
+            const winnerCard = document.getElementById('winnerCard');
+            const winnerLabel = document.getElementById('winnerLabel');
+            const winnerName = document.getElementById('winnerName');
+            const winnerPrize = document.getElementById('winnerPrize');
+            
+            loadingText.style.display = 'none';
+            
+            const position = totalCount - currentRound + 1;
+            
+            if (withOrder) {
+                winnerLabel.textContent = `${position}. miesto`;
+            } else {
+                winnerLabel.textContent = totalCount === 1 ? 'Víťaz' : 'Vylosovaný';
+            }
+            
+            winnerName.textContent = winner;
+            
+            // Zobraziť výhru ak existuje
+            if (withPrizes && prizes[position]) {
+                winnerPrize.textContent = `🎁 ${prizes[position]}`;
+                winnerPrize.style.display = 'block';
+            } else {
+                winnerPrize.style.display = 'none';
+            }
+            
+            winnerCard.classList.add('show');
+            
+            // Uložiť výsledok
+            winnerResults.push({
+                winner: winner,
+                position: position,
+                prize: withPrizes ? prizes[position] : null
+            });
+            
+            // Po 2.5 sekundách skryť a pokračovať
+            setTimeout(() => {
+                document.getElementById('lotteryBowl').classList.remove('active');
+                
+                setTimeout(() => {
+                    if (currentRound >= totalCount) {
+                        // Koniec - zobraziť všetky výsledky
+                        showAllResults();
+                    } else {
+                        // Pokračovať ďalším kolom
+                        startRound();
+                    }
+                }, 300);
+            }, 2500);
+        }
+
+        function showAllResults() {
+            const resultsList = document.getElementById('resultsList');
+            const resultsDiv = document.getElementById('results');
+            
+            resultsList.innerHTML = '';
+            resultsDiv.classList.add('active');
+            resultsDiv.style.opacity = '1';
+            
+            // Pridať všetky výsledky naraz (od 1. po posledné)
+            winnerResults.reverse().forEach((result, index) => {
+                setTimeout(() => {
+                    const resultItem = document.createElement('div');
+                    resultItem.className = 'result-item';
+                    
+                    let text = '';
+                    if (withOrder) {
+                        text = `${result.position}. miesto: ${result.winner}`;
+                        if (result.prize) {
+                            text += ` - ${result.prize}`;
+                        }
+                    } else {
+                        text = totalCount === 1 ? `🏆 ${result.winner}` : `✨ ${result.winner}`;
+                    }
+                    
+                    resultItem.textContent = text;
+                    resultsList.appendChild(resultItem);
+                    
+                    // Konfety po poslednom výsledku
+                    if (index === winnerResults.length - 1) {
+                        setTimeout(() => {
+                            createConfetti();
+                        }, 500);
+                    }
+                }, index * 400);
+            });
+        }
+
+        function createConfetti() {
+            const colors = [
+                '#6366f1', '#ec4899', '#8b5cf6', '#10b981', '#f59e0b', 
+                '#3b82f6', '#ef4444', '#14b8a6', '#f97316', '#a855f7',
+                '#06b6d4', '#eab308', '#ec4899', '#8b5cf6'
+            ];
+            const confettiCount = 150;
+
+            for (let i = 0; i < confettiCount; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.width = (8 + Math.random() * 8) + 'px';
+                    confetti.style.height = (8 + Math.random() * 8) + 'px';
+                    confetti.style.animation = `confettiFall ${2 + Math.random() * 3}s linear forwards`;
+                    confetti.style.animationDelay = Math.random() * 0.3 + 's';
+                    confetti.style.boxShadow = `0 0 10px ${colors[Math.floor(Math.random() * colors.length)]}`;
+                    
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5500);
+                }, i * 15);
+            }
+        }
+
+        function closeResults() {
+            document.getElementById('results').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
