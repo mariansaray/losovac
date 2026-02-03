@@ -781,6 +781,235 @@
             }
         }
 
+        /* Help Section */
+        .help-section {
+            margin-top: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .help-accordion {
+            background: rgba(15, 15, 25, 0.6);
+            border-radius: 20px;
+            border: 2px solid rgba(99, 102, 241, 0.2);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .help-accordion[open] {
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .help-summary {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            list-style: none;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .help-summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .help-summary:hover {
+            background: rgba(99, 102, 241, 0.1);
+            color: #fff;
+        }
+
+        .help-icon {
+            font-size: 1.5em;
+            flex-shrink: 0;
+        }
+
+        .help-title {
+            flex: 1;
+        }
+
+        .help-arrow {
+            transition: transform 0.3s ease;
+            opacity: 0.6;
+        }
+
+        .help-accordion[open] .help-arrow {
+            transform: rotate(180deg);
+        }
+
+        .help-content {
+            padding: 30px 25px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.7;
+        }
+
+        .help-intro {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 15px;
+            border-left: 4px solid #6366f1;
+        }
+
+        .help-intro h3 {
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .help-step {
+            display: flex;
+            gap: 20px;
+            margin: 30px 0;
+            padding: 25px;
+            background: rgba(20, 20, 35, 0.4);
+            border-radius: 15px;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: 900;
+            color: white;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .step-content h4 {
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .step-content p {
+            margin: 10px 0;
+        }
+
+        .step-content ul {
+            margin: 10px 0 10px 20px;
+        }
+
+        .step-content li {
+            margin: 5px 0;
+        }
+
+        .step-example {
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            border-left: 3px solid #8b5cf6;
+        }
+
+        .step-example pre {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #a8dadc;
+        }
+
+        .help-faq {
+            margin: 40px 0;
+            padding: 25px;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 15px;
+        }
+
+        .help-faq h3 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .faq-item {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(20, 20, 35, 0.4);
+            border-radius: 10px;
+        }
+
+        .faq-item strong {
+            color: #ec4899;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .faq-item p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .help-tips {
+            margin: 40px 0;
+            padding: 25px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 15px;
+        }
+
+        .help-tips h3 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .tip-item {
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(20, 20, 35, 0.4);
+            border-radius: 10px;
+            border-left: 3px solid #10b981;
+        }
+
+        .tip-item strong {
+            color: #10b981;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .tip-item p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .help-footer {
+            margin-top: 30px;
+            padding: 20px;
+            text-align: center;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 15px;
+        }
+
+        .help-footer p {
+            margin: 10px 0;
+        }
+
+        .help-footer a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .help-footer a:hover {
+            text-decoration: underline;
+        }
+
         /* Footer */
         .footer {
             text-align: center;
@@ -926,6 +1155,36 @@
                 font-size: 0.8em;
                 margin-top: 20px;
             }
+
+            .help-summary {
+                padding: 15px 18px;
+                font-size: 1em;
+            }
+
+            .help-content {
+                padding: 20px 15px;
+            }
+
+            .help-step {
+                flex-direction: column;
+                padding: 20px 15px;
+            }
+
+            .step-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1.3em;
+            }
+
+            .step-content h4 {
+                font-size: 1.1em;
+            }
+
+            .help-intro h3,
+            .help-faq h3,
+            .help-tips h3 {
+                font-size: 1.3em;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1018,6 +1277,178 @@
             </div>
 
             <button class="btn" onclick="startLottery()">🎯 Spustiť losovanie</button>
+        </div>
+
+        <!-- Návod na použitie -->
+        <div class="help-section">
+            <details class="help-accordion">
+                <summary class="help-summary">
+                    <span class="help-icon">❓</span>
+                    <span class="help-title">Ako používať losovač? (Krok-za-krokom návod)</span>
+                    <span class="help-arrow">▼</span>
+                </summary>
+                
+                <div class="help-content">
+                    <div class="help-intro">
+                        <h3>🎲 Vitajte v online losovači!</h3>
+                        <p>Tento nástroj vám pomôže spravodlivo a náhodne vylosovať víťazov zo zoznamu účastníkov. Je perfektný pre súťaže, žrebovania, výber tímov a podobne.</p>
+                    </div>
+
+                    <div class="help-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Zadajte položky na losovanie</h4>
+                            <p>Do veľkého textového poľa napíšte <strong>jednu položku na každý riadok</strong>.</p>
+                            <div class="step-example">
+                                <strong>Príklad:</strong>
+                                <pre>Janka Nováková
+Peter Kovač
+Mária Svobodová
+Ján Horák
+Eva Malá</pre>
+                            </div>
+                            <p><strong>Tip:</strong> Môžete skopírovať mená zo Excelu, Wordu alebo emailu - každý riadok bude jedna položka.</p>
+                        </div>
+                    </div>
+
+                    <div class="help-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Nastavte počet vylosovaných</h4>
+                            <p>Zadajte, <strong>koľko víťazov</strong> chcete vylosovať (1-100).</p>
+                            <div class="step-example">
+                                <strong>Príklad:</strong> Ak máte 50 účastníkov a chcete vybrať 3 víťazov, napíšte číslo <strong>3</strong>.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="help-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Losovať s poradím? (voliteľné)</h4>
+                            <p>Zaškrtnite túto možnosť, ak chcete určiť <strong>poradie víťazov</strong> (1., 2., 3. miesto).</p>
+                            <div class="step-example">
+                                <strong>Kedy použiť:</strong><br>
+                                ✅ Máte rôzne ceny pre prvé, druhé a tretie miesto<br>
+                                ✅ Chcete vedieť kto skončil na akom mieste<br><br>
+                                <strong>Kedy nepoužiť:</strong><br>
+                                ❌ Všetci víťazi dostanú rovnakú cenu<br>
+                                ❌ Potrebujete len vybrať náhodných ľudí bez poradia
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="help-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Pridať výhry? (voliteľné)</h4>
+                            <p>Táto možnosť sa zobrazí <strong>len ak máte zapnuté "Losovať s poradím"</strong>.</p>
+                            <p>Zaškrtnite ju, ak chcete zadať <strong>názvy výhier</strong> pre jednotlivé miesta.</p>
+                            <div class="step-example">
+                                <strong>Príklad výhier:</strong><br>
+                                1. miesto: iPhone 15 Pro<br>
+                                2. miesto: AirPods Pro<br>
+                                3. miesto: Voucher 50€
+                            </div>
+                            <p><strong>Tip:</strong> Výhry sa zobrazia pri samotnom losovaní aj vo finálnych výsledkoch.</p>
+                        </div>
+                    </div>
+
+                    <div class="help-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>Spustite losovanie!</h4>
+                            <p>Kliknite na veľké tlačidlo <strong>"🎯 Spustiť losovanie"</strong>.</p>
+                            <p>Teraz sa začne zábava:</p>
+                            <ul>
+                                <li>🎰 Zobrazí sa slot machine s točiacimi sa stĺpcami</li>
+                                <li>⏱️ Po 3 sekundách sa stĺpce zastavia</li>
+                                <li>🎉 Vyletí karta s vylosovaným víťazom</li>
+                                <li>🔄 Proces sa opakuje pre každého ďalšieho víťaza</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="help-step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h4>Výsledky</h4>
+                            <p>Po dokončení všetkých kôl uvidíte <strong>kompletný zoznam víťazov</strong>.</p>
+                            <div class="step-example">
+                                <strong>Výsledky obsahujú:</strong><br>
+                                • Mená vylosovaných<br>
+                                • Poradie (ak je zapnuté)<br>
+                                • Výhry (ak sú zadané)<br>
+                                • Krásne konfety na záver! 🎊
+                            </div>
+                            <p><strong>Tip:</strong> Výsledky môžete screenshotnúť alebo vyprintovať (Ctrl/Cmd + P).</p>
+                        </div>
+                    </div>
+
+                    <div class="help-faq">
+                        <h3>💡 Často kladené otázky</h3>
+                        
+                        <div class="faq-item">
+                            <strong>Q: Je losovanie skutočne náhodné?</strong>
+                            <p>A: Áno! Používame matematický generátor náhodných čísel, ktorý je úplne spravodlivý a nepredvídateľný.</p>
+                        </div>
+
+                        <div class="faq-item">
+                            <strong>Q: Ukladajú sa moje dáta niekde?</strong>
+                            <p>A: Nie! Všetko sa deje len vo vašom prehliadači. Žiadne dáta sa nikam neosielajú ani neukladajú.</p>
+                        </div>
+
+                        <div class="faq-item">
+                            <strong>Q: Môže sa niekto vylosovať viackrát?</strong>
+                            <p>A: Nie. Každá položka sa môže vylosovať len raz. Po vylosovaní sa odstráni zo zoznamu.</p>
+                        </div>
+
+                        <div class="faq-item">
+                            <strong>Q: Koľko položiek môžem zadať?</strong>
+                            <p>A: Prakticky neobmedzene (limit je 10 000 znakov). Väčšina súťaží má 10-1000 účastníkov.</p>
+                        </div>
+
+                        <div class="faq-item">
+                            <strong>Q: Funguje to na mobile?</strong>
+                            <p>A: Áno! Losovač je plne responzívny a funguje na mobile, tablete aj počítači.</p>
+                        </div>
+
+                        <div class="faq-item">
+                            <strong>Q: Je to zadarmo?</strong>
+                            <p>A: Áno, úplne zadarmo! Bez registrácie, bez reklám, bez limitov.</p>
+                        </div>
+                    </div>
+
+                    <div class="help-tips">
+                        <h3>🎯 Profesionálne tipy</h3>
+                        
+                        <div class="tip-item">
+                            <strong>✨ Pre živé podujatia:</strong>
+                            <p>Pripojte počítač na projektor alebo veľkú obrazovku - animácie vytvoria skvelú atmosféru!</p>
+                        </div>
+
+                        <div class="tip-item">
+                            <strong>📸 Zdieľanie výsledkov:</strong>
+                            <p>Urobte screenshot výsledkov a zdieľajte ich na sociálnych sieťach alebo emailom.</p>
+                        </div>
+
+                        <div class="tip-item">
+                            <strong>🔄 Opakované losovanie:</strong>
+                            <p>Chcete losovať znova? Jednoducho znovu kliknite na "Spustiť losovanie" - dostanete iné výsledky!</p>
+                        </div>
+
+                        <div class="tip-item">
+                            <strong>📝 Úprava počtu:</strong>
+                            <p>Môžete kedykoľvek zmeniť počet vylosovaných a znova spustiť losovanie.</p>
+                        </div>
+                    </div>
+
+                    <div class="help-footer">
+                        <p><strong>Potrebujete pomoc?</strong> Kontaktujte nás na <a href="mailto:info@losovanie.sk">info@losovanie.sk</a></p>
+                        <p>Prajeme úspešné losovanie! 🍀</p>
+                    </div>
+                </div>
+            </details>
         </div>
 
         <footer class="footer">
