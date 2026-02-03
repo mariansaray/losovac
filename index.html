@@ -31,7 +31,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎲</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.svg">
+    <link rel="shortcut icon" href="favicon.svg">
     
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json">
@@ -998,12 +1000,12 @@
 
             <div class="setting-group" style="margin-bottom: 20px;">
                 <div class="checkbox-group" onclick="document.getElementById('withOrder').click()">
-                    <input type="checkbox" id="withOrder" onclick="event.stopPropagation()">
+                    <input type="checkbox" id="withOrder" onclick="event.stopPropagation(); toggleOrderOptions()">
                     <label for="withOrder">Losovať s poradím (1., 2., 3., ...)</label>
                 </div>
             </div>
 
-            <div class="setting-group" style="margin-bottom: 30px;">
+            <div class="setting-group" id="prizesCheckboxGroup" style="margin-bottom: 30px; display: none;">
                 <div class="checkbox-group" onclick="document.getElementById('withPrizes').click()">
                     <input type="checkbox" id="withPrizes" onclick="event.stopPropagation(); togglePrizeSection()">
                     <label for="withPrizes">Pridať výhry</label>
@@ -1070,6 +1072,23 @@
         let withPrizes = false;
         let totalCount = 0;
         let currentRound = 0;
+
+        function toggleOrderOptions() {
+            const orderCheckbox = document.getElementById('withOrder');
+            const prizesCheckboxGroup = document.getElementById('prizesCheckboxGroup');
+            const prizesCheckbox = document.getElementById('withPrizes');
+            const prizesSection = document.getElementById('prizesSection');
+            
+            if (orderCheckbox.checked) {
+                // Zobraziť možnosť pridať výhry
+                prizesCheckboxGroup.style.display = 'block';
+            } else {
+                // Skryť možnosť pridať výhry a vypnúť ju
+                prizesCheckboxGroup.style.display = 'none';
+                prizesCheckbox.checked = false;
+                prizesSection.classList.remove('active');
+            }
+        }
 
         function togglePrizeSection() {
             const checkbox = document.getElementById('withPrizes');
