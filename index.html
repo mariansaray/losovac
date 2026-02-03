@@ -1021,6 +1021,69 @@
             z-index: 1;
         }
 
+        .footer-stats {
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 15px;
+            display: inline-block;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1em;
+        }
+
+        .stat-icon {
+            font-size: 1.5em;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+        }
+
+        .stat-value {
+            color: #6366f1;
+            font-weight: 900;
+            font-size: 1.3em;
+            min-width: 60px;
+            text-align: left;
+            animation: statGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes statGlow {
+            0%, 100% { 
+                text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+            }
+            50% { 
+                text-shadow: 0 0 20px rgba(99, 102, 241, 0.8);
+            }
+        }
+
+        .stat-value.updated {
+            animation: statPulse 0.5s ease-out;
+        }
+
+        @keyframes statPulse {
+            0% { 
+                transform: scale(1);
+            }
+            50% { 
+                transform: scale(1.3);
+                color: #ec4899;
+            }
+            100% { 
+                transform: scale(1);
+            }
+        }
+
+        .footer-copyright {
+            margin-top: 10px;
+        }
+
         .footer a {
             color: rgba(99, 102, 241, 0.8);
             text-decoration: none;
@@ -1184,6 +1247,24 @@
             .help-faq h3,
             .help-tips h3 {
                 font-size: 1.3em;
+            }
+
+            .footer-stats {
+                padding: 12px 15px;
+            }
+
+            .stat-item {
+                font-size: 1em;
+                gap: 8px;
+            }
+
+            .stat-icon {
+                font-size: 1.3em;
+            }
+
+            .stat-value {
+                font-size: 1.2em;
+                min-width: 50px;
             }
         }
 
@@ -1399,11 +1480,6 @@ Eva Malá</pre>
                         </div>
 
                         <div class="faq-item">
-                            <strong>Q: Môže sa niekto vylosovať viackrát?</strong>
-                            <p>A: Nie. Každá položka sa môže vylosovať len raz. Po vylosovaní sa odstráni zo zoznamu.</p>
-                        </div>
-
-                        <div class="faq-item">
                             <strong>Q: Koľko položiek môžem zadať?</strong>
                             <p>A: Prakticky neobmedzene (limit je 10 000 znakov). Väčšina súťaží má 10-1000 účastníkov.</p>
                         </div>
@@ -1444,7 +1520,6 @@ Eva Malá</pre>
                     </div>
 
                     <div class="help-footer">
-                        <p><strong>Potrebujete pomoc?</strong> Kontaktujte nás na <a href="mailto:info@losovanie.sk">info@losovanie.sk</a></p>
                         <p>Prajeme úspešné losovanie! 🍀</p>
                     </div>
                 </div>
@@ -1452,7 +1527,16 @@ Eva Malá</pre>
         </div>
 
         <footer class="footer">
-            © 2026 <a href="https://www.losovanie.sk" target="_blank" rel="noopener">losovanie.sk</a> | Autor: Marián Šaray
+            <div class="footer-stats">
+                <div class="stat-item">
+                    <span class="stat-icon">🎲</span>
+                    <span class="stat-label">Počet losovaní:</span>
+                    <span class="stat-value" id="lotteryCount">0</span>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                © 2026 <a href="https://www.losovanie.sk" target="_blank" rel="noopener">losovanie.sk</a> | Autor: Marián Šaray
+            </div>
         </footer>
     </div>
 
@@ -1503,6 +1587,38 @@ Eva Malá</pre>
         let withPrizes = false;
         let totalCount = 0;
         let currentRound = 0;
+
+        // Počítadlo losovaní
+        function initLotteryCounter() {
+            const count = localStorage.getItem('lotteryCount') || 0;
+            updateCounterDisplay(count);
+        }
+
+        function incrementLotteryCounter() {
+            let count = parseInt(localStorage.getItem('lotteryCount') || 0);
+            count++;
+            localStorage.setItem('lotteryCount', count);
+            updateCounterDisplay(count);
+            
+            // Animácia update
+            const counterElement = document.getElementById('lotteryCount');
+            counterElement.classList.add('updated');
+            setTimeout(() => {
+                counterElement.classList.remove('updated');
+            }, 500);
+        }
+
+        function updateCounterDisplay(count) {
+            const counterElement = document.getElementById('lotteryCount');
+            if (counterElement) {
+                counterElement.textContent = count.toLocaleString('sk-SK');
+            }
+        }
+
+        // Inicializuj počítadlo pri načítaní stránky
+        document.addEventListener('DOMContentLoaded', function() {
+            initLotteryCounter();
+        });
 
         function toggleOrderOptions() {
             const orderCheckbox = document.getElementById('withOrder');
@@ -1773,10 +1889,12 @@ Eva Malá</pre>
                     resultItem.textContent = text;
                     resultsList.appendChild(resultItem);
                     
-                    // Konfety po poslednom výsledku
+                    // Konfety a počítadlo po poslednom výsledku
                     if (index === winnerResults.length - 1) {
                         setTimeout(() => {
                             createConfetti();
+                            // Zvýš počítadlo losovaní
+                            incrementLotteryCounter();
                         }, 500);
                     }
                 }, index * 400);
