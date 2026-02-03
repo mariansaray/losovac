@@ -1588,26 +1588,41 @@ Eva Malá</pre>
         let totalCount = 0;
         let currentRound = 0;
 
-        // Počítadlo losovaní
-        function initLotteryCounter() {
-            const count = localStorage.getItem('lotteryCount') || 0;
-            updateCounterDisplay(count);
+        // Globálne počítadlo losovaní (CountAPI)
+        const COUNTER_API_URL = 'https://api.countapi.xyz';
+        const COUNTER_KEY = 'losovanie.sk/total-lotteries';
+
+        // Načítaj aktuálny globálny počet
+        async function initLotteryCounter() {
+            try {
+                const response = await fetch(`${COUNTER_API_URL}/get/${COUNTER_KEY}`);
+                const data = await response.json();
+                updateCounterDisplay(data.value || 0);
+            } catch (error) {
+                console.error('Chyba pri načítaní počítadla:', error);
+                updateCounterDisplay(0);
+            }
         }
 
-        function incrementLotteryCounter() {
-            let count = parseInt(localStorage.getItem('lotteryCount') || 0);
-            count++;
-            localStorage.setItem('lotteryCount', count);
-            updateCounterDisplay(count);
-            
-            // Animácia update
-            const counterElement = document.getElementById('lotteryCount');
-            counterElement.classList.add('updated');
-            setTimeout(() => {
-                counterElement.classList.remove('updated');
-            }, 500);
+        // Zvýš globálny počet o 1
+        async function incrementLotteryCounter() {
+            try {
+                const response = await fetch(`${COUNTER_API_URL}/hit/${COUNTER_KEY}`);
+                const data = await response.json();
+                updateCounterDisplay(data.value);
+                
+                // Animácia update
+                const counterElement = document.getElementById('lotteryCount');
+                counterElement.classList.add('updated');
+                setTimeout(() => {
+                    counterElement.classList.remove('updated');
+                }, 500);
+            } catch (error) {
+                console.error('Chyba pri zvýšení počítadla:', error);
+            }
         }
 
+        // Zobraz počet v UI
         function updateCounterDisplay(count) {
             const counterElement = document.getElementById('lotteryCount');
             if (counterElement) {
