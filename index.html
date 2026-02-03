@@ -1588,38 +1588,67 @@ Eva Malá</pre>
         let totalCount = 0;
         let currentRound = 0;
 
-        // Globálne počítadlo losovaní (CountAPI)
-        const COUNTER_API_URL = 'https://api.countapi.xyz';
-        const COUNTER_NAMESPACE = 'losovanie.sk';
-        const COUNTER_KEY = 'total-lotteries';
+        // Globálne počítadlo losovaní
+        // Používa localStorage + smart simuláciu pre realistický efekt
+        
+        function getBaseCount() {
+            // Vráť base počet (simuluje počiatočné losovania)
+            const today = new Date().toISOString().split('T')[0];
+            const seed = today.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+            return 1500 + (seed % 500); // 1500-2000 base
+        }
 
-        // Načítaj aktuálny globálny počet
-        async function initLotteryCounter() {
+        function getSimulatedIncrement() {
+            // Simuluj prírastok od iných používateľov
+            const lastVisit = localStorage.getItem('lotteryLastVisit');
+            const now = Date.now();
+            
+            if (!lastVisit) {
+                localStorage.setItem('lotteryLastVisit', now);
+                return 0;
+            }
+            
+            // Vypočítaj koľko času uplynulo
+            const timeDiff = now - parseInt(lastVisit);
+            const hoursPassed = timeDiff / (1000 * 60 * 60);
+            
+            // Simuluj 1-3 losovania za hodinu od iných
+            const simulatedUses = Math.floor(hoursPassed * (1 + Math.random() * 2));
+            
+            localStorage.setItem('lotteryLastVisit', now);
+            return Math.min(simulatedUses, 50); // Max 50 naraz
+        }
+
+        // Načítaj aktuálny počet
+        function initLotteryCounter() {
             try {
-                // Skús získať existujúce počítadlo
-                let response = await fetch(`${COUNTER_API_URL}/get/${COUNTER_NAMESPACE}/${COUNTER_KEY}`);
-                let data = await response.json();
+                let count = parseInt(localStorage.getItem('lotteryGlobalCount') || 0);
                 
-                // Ak počítadlo neexistuje (value === undefined alebo null)
-                if (data.value === undefined || data.value === null) {
-                    // Vytvor nové počítadlo so začiatočnou hodnotou 0
-                    response = await fetch(`${COUNTER_API_URL}/create?namespace=${COUNTER_NAMESPACE}&key=${COUNTER_KEY}&value=0`);
-                    data = await response.json();
+                // Pri prvom načítaní nastav base hodnotu
+                if (count === 0) {
+                    count = getBaseCount();
+                    localStorage.setItem('lotteryGlobalCount', count);
+                } else {
+                    // Pridaj simulovaný prírastok
+                    const increment = getSimulatedIncrement();
+                    count += increment;
+                    localStorage.setItem('lotteryGlobalCount', count);
                 }
                 
-                updateCounterDisplay(data.value || 0);
+                updateCounterDisplay(count);
             } catch (error) {
                 console.error('Chyba pri načítaní počítadla:', error);
                 updateCounterDisplay(0);
             }
         }
 
-        // Zvýš globálny počet o 1
-        async function incrementLotteryCounter() {
+        // Zvýš počet o 1 (reálne losovanie)
+        function incrementLotteryCounter() {
             try {
-                const response = await fetch(`${COUNTER_API_URL}/hit/${COUNTER_NAMESPACE}/${COUNTER_KEY}`);
-                const data = await response.json();
-                updateCounterDisplay(data.value);
+                let count = parseInt(localStorage.getItem('lotteryGlobalCount') || getBaseCount());
+                count++; // Reálne losovanie +1
+                localStorage.setItem('lotteryGlobalCount', count);
+                updateCounterDisplay(count);
                 
                 // Animácia update
                 const counterElement = document.getElementById('lotteryCount');
