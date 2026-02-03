@@ -1590,13 +1590,23 @@ Eva Malá</pre>
 
         // Globálne počítadlo losovaní (CountAPI)
         const COUNTER_API_URL = 'https://api.countapi.xyz';
-        const COUNTER_KEY = 'losovanie.sk/total-lotteries';
+        const COUNTER_NAMESPACE = 'losovanie.sk';
+        const COUNTER_KEY = 'total-lotteries';
 
         // Načítaj aktuálny globálny počet
         async function initLotteryCounter() {
             try {
-                const response = await fetch(`${COUNTER_API_URL}/get/${COUNTER_KEY}`);
-                const data = await response.json();
+                // Skús získať existujúce počítadlo
+                let response = await fetch(`${COUNTER_API_URL}/get/${COUNTER_NAMESPACE}/${COUNTER_KEY}`);
+                let data = await response.json();
+                
+                // Ak počítadlo neexistuje (value === undefined alebo null)
+                if (data.value === undefined || data.value === null) {
+                    // Vytvor nové počítadlo so začiatočnou hodnotou 0
+                    response = await fetch(`${COUNTER_API_URL}/create?namespace=${COUNTER_NAMESPACE}&key=${COUNTER_KEY}&value=0`);
+                    data = await response.json();
+                }
+                
                 updateCounterDisplay(data.value || 0);
             } catch (error) {
                 console.error('Chyba pri načítaní počítadla:', error);
@@ -1607,7 +1617,7 @@ Eva Malá</pre>
         // Zvýš globálny počet o 1
         async function incrementLotteryCounter() {
             try {
-                const response = await fetch(`${COUNTER_API_URL}/hit/${COUNTER_KEY}`);
+                const response = await fetch(`${COUNTER_API_URL}/hit/${COUNTER_NAMESPACE}/${COUNTER_KEY}`);
                 const data = await response.json();
                 updateCounterDisplay(data.value);
                 
