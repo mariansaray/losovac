@@ -1530,8 +1530,9 @@ Eva Malá</pre>
             <div class="footer-stats">
                 <div class="stat-item">
                     <span class="stat-icon">🎲</span>
-                    <span class="stat-label">Počet losovaní:</span>
+                    <span class="stat-label">Losovač už využilo</span>
                     <span class="stat-value" id="lotteryCount">0</span>
+                    <span class="stat-label">ľudí</span>
                 </div>
             </div>
             <div class="footer-copyright">
@@ -1588,53 +1589,13 @@ Eva Malá</pre>
         let totalCount = 0;
         let currentRound = 0;
 
-        // Globálne počítadlo losovaní
-        // Používa localStorage + smart simuláciu pre realistický efekt
+        // Počítadlo používateľov losovača
+        // Ukladá sa do localStorage prehliadača
         
-        function getBaseCount() {
-            // Vráť base počet (simuluje počiatočné losovania)
-            const today = new Date().toISOString().split('T')[0];
-            const seed = today.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-            return 1500 + (seed % 500); // 1500-2000 base
-        }
-
-        function getSimulatedIncrement() {
-            // Simuluj prírastok od iných používateľov
-            const lastVisit = localStorage.getItem('lotteryLastVisit');
-            const now = Date.now();
-            
-            if (!lastVisit) {
-                localStorage.setItem('lotteryLastVisit', now);
-                return 0;
-            }
-            
-            // Vypočítaj koľko času uplynulo
-            const timeDiff = now - parseInt(lastVisit);
-            const hoursPassed = timeDiff / (1000 * 60 * 60);
-            
-            // Simuluj 1-3 losovania za hodinu od iných
-            const simulatedUses = Math.floor(hoursPassed * (1 + Math.random() * 2));
-            
-            localStorage.setItem('lotteryLastVisit', now);
-            return Math.min(simulatedUses, 50); // Max 50 naraz
-        }
-
-        // Načítaj aktuálny počet
+        // Načítaj aktuálny počet používateľov
         function initLotteryCounter() {
             try {
-                let count = parseInt(localStorage.getItem('lotteryGlobalCount') || 0);
-                
-                // Pri prvom načítaní nastav base hodnotu
-                if (count === 0) {
-                    count = getBaseCount();
-                    localStorage.setItem('lotteryGlobalCount', count);
-                } else {
-                    // Pridaj simulovaný prírastok
-                    const increment = getSimulatedIncrement();
-                    count += increment;
-                    localStorage.setItem('lotteryGlobalCount', count);
-                }
-                
+                const count = parseInt(localStorage.getItem('lotteryUserCount') || 0);
                 updateCounterDisplay(count);
             } catch (error) {
                 console.error('Chyba pri načítaní počítadla:', error);
@@ -1642,12 +1603,12 @@ Eva Malá</pre>
             }
         }
 
-        // Zvýš počet o 1 (reálne losovanie)
+        // Zvýš počet používateľov o 1
         function incrementLotteryCounter() {
             try {
-                let count = parseInt(localStorage.getItem('lotteryGlobalCount') || getBaseCount());
-                count++; // Reálne losovanie +1
-                localStorage.setItem('lotteryGlobalCount', count);
+                let count = parseInt(localStorage.getItem('lotteryUserCount') || 0);
+                count++;
+                localStorage.setItem('lotteryUserCount', count);
                 updateCounterDisplay(count);
                 
                 // Animácia update
